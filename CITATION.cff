@@ -28,10 +28,10 @@ authors:
     email: "scliran9@gmail.com"
 identifiers:
   - type: url
-    value: "https://github.com/LiranOG/OADF"
+    value: "https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation"
     description: Canonical source repository.
-repository-code: "https://github.com/LiranOG/OADF"
-url: "https://github.com/LiranOG/OADF"
+repository-code: "https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation"
+url: "https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation"
 # -----------------------------------------------------------------------------
 # License of the WORK described by this metadata (the scholarly paper and its
 # scientific content), NOT of the repository as a whole. The repository
@@ -93,4 +93,4 @@ preferred-citation:
       orcid: "https://orcid.org/0009-0008-8035-1308"
       email: "scliran9@gmail.com"
   year: 2024
-  notes: Working draft. Repository at https://github.com/LiranOG/OADF.
+  notes: Working draft. Repository at https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation.

@@ -3,7 +3,7 @@
 *A Thermodynamic and Aerosol-Physics Analysis of Visible Vapor Condensation
 in the Human Buccal Cavity Under Rapid Decompression.*
 
-[![CI](https://img.shields.io/github/actions/workflow/status/LiranOG/OADF/ci.yml?branch=main&label=LaTeX%20build)](https://github.com/LiranOG/OADF/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/LiranOG/OADF-Adiabatic-Buccal-Condensation/ci.yml?branch=main&label=LaTeX%20build)](https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0008--8035--1308-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0008-8035-1308)
@@ -159,7 +159,7 @@ Machine-readable metadata in [`CITATION.cff`](CITATION.cff). BibTeX:
                   Decompression},
   year         = {2024},
   note         = {Working draft. ORCID: \href{https://orcid.org/0009-0008-8035-1308}{0009-0008-8035-1308}},
-  howpublished = {\url{https://github.com/LiranOG/OADF}}
+  howpublished = {\url{https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation}}
 }
 ```
 
@@ -228,7 +228,8 @@ governed by MIT alone. Reuse of the scientific content — verbatim,
 translated, paraphrased, or adapted, in any medium — requires CC BY 4.0
 attribution to **Liran Schwartz**
 ([ORCID 0009-0008-8035-1308](https://orcid.org/0009-0008-8035-1308)) with a
-link to https://github.com/LiranOG/OADF and an indication of any changes.
+link to https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation and
+an indication of any changes.
 
 ### 9.3 SPDX Quick Reference
 

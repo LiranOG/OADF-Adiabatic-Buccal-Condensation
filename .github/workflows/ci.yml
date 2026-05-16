@@ -65,7 +65,7 @@ jobs:
           persist-credentials: false
 
       - name: Compile with latexmk
-        uses: xu-cheng/latex-action@eb4580a727b04bd86a67e9c3d2f6fe7ee64e6da8  # v3.2.0
+        uses: xu-cheng/latex-action@4.1.0
         with:
           root_file: OADF_academic_paper.tex
           working_directory: docs/paper

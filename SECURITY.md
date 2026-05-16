@@ -86,7 +86,9 @@ delivery depends on an upstream patch (coordinated with the reporter).
 
 - `pdflatex` / `latexmk` invoked **without** `--shell-escape` in both
   `Makefile` and CI.
-- All third-party GitHub Actions pinned to immutable commit SHAs.
+- GitHub Actions are pinned to immutable commit SHAs where available, or to
+  explicit release tags when the upstream action release is the compatibility
+  boundary.
 - CI `permissions:` reduced to `contents: read`.
 - Python validator is stdlib-only — no `pip install` step.
 - `.gitignore` excludes common secret-bearing files (`.env`, `*.pem`,

@@ -72,10 +72,6 @@ The reader-friendly English web article is published through GitHub Pages:
 
 **https://liranog.github.io/OADF-Adiabatic-Buccal-Condensation/mouth_cloud_effect_EN.html**
 
-The site root also redirects to the English article:
-
-**https://liranog.github.io/OADF-Adiabatic-Buccal-Condensation/**
-
 ## 3. Reference Predictions
 
 | Quantity                               | Value (Π = 1.10)               |

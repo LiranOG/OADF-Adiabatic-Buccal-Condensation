@@ -1,16 +1,20 @@
+<div align="center">
+
 # Oral Adiabatic Decompression Fog (OADF)
 
 *A Thermodynamic and Aerosol-Physics Analysis of Visible Vapor Condensation
 in the Human Buccal Cavity Under Rapid Decompression.*
 
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0008--8035--1308-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0008-8035-1308)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-
-[![ORCID](https://img.shields.io/badge/ORCID-0009--0008--8035--1308-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0008-8035-1308)
 
 [![Paper](https://img.shields.io/badge/paper-PDF-red.svg)](docs/paper/OADF_academic_paper.pdf)
 [![Citation](https://img.shields.io/badge/cite-CFF-blue.svg)](CITATION.cff)
 [![CI](https://img.shields.io/github/actions/workflow/status/LiranOG/OADF-Adiabatic-Buccal-Condensation/ci.yml?branch=main&label=LaTeX%20build)](https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation/actions/workflows/ci.yml)
+
+</div>
 
 ---
 

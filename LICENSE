@@ -1,0 +1,160 @@
+================================================================================
+  OADF — DUAL-LICENSING ARCHITECTURE
+  Project: Oral Adiabatic Decompression Fog (OADF)
+  Copyright Holder: Liran Schwartz (GitHub: LiranOG; ORCID: 0009-0008-8035-1308)
+  Copyright (c) 2024–2026 Liran Schwartz. All rights reserved where not granted below.
+================================================================================
+
+This repository is distributed under a **dual-licensing architecture**. Two
+disjoint licenses apply to two disjoint classes of content. Reuse must comply
+with the license that governs the specific file or fragment in question; the
+broader license does NOT subsume the narrower one. Where a single file
+contains both classes of content, the intra-file split defined in section 3
+controls.
+
+--------------------------------------------------------------------------------
+SECTION 1.  LICENSING BOUNDARY MATRIX
+--------------------------------------------------------------------------------
+
+A. SOFTWARE LAYER — MIT License (SPDX-License-Identifier: MIT)
+   Governs all functional code, build automation, CI/CD configuration,
+   structural HTML/CSS scaffolding, repository metadata, and tooling.
+   Concretely:
+     - Makefile
+     - scripts/**                                    (all scripts)
+     - .github/workflows/**                          (CI configuration)
+     - .github/ISSUE_TEMPLATE/**                     (issue forms)
+     - .github/PULL_REQUEST_TEMPLATE.md
+     - .gitignore
+     - Structural HTML markup and CSS in docs/web/*.html
+       (i.e., DOM scaffolding, layout rules, interactive scripts —
+        see intra-file split, Section 3)
+
+B. ACADEMIC / RESEARCH LAYER — Creative Commons Attribution 4.0
+   International (CC BY 4.0; SPDX-License-Identifier: CC-BY-4.0)
+   Governs all scholarly content: the manuscript, its compiled artifact,
+   and the scientific prose, equations, figures, and physical /
+   thermodynamic models embedded within the popular-science web articles.
+   Concretely:
+     - docs/paper/OADF_academic_paper.tex
+     - docs/paper/OADF_academic_paper.pdf
+     - All scientific prose, equations, derivations, tables, figures, and
+       physics-model exposition contained within docs/web/*.html
+       (see intra-file split, Section 3)
+     - Any direct quotation of the above appearing in README.md or any
+       other repository documentation.
+
+C. PROJECT METADATA — MIT License (informational documents)
+   The following files are repository documentation released under MIT:
+     - README.md
+     - CONTRIBUTING.md
+     - SECURITY.md
+     - LICENSE (this file)
+     - CITATION.cff (machine-readable metadata)
+
+--------------------------------------------------------------------------------
+SECTION 2.  SPDX FILE-LEVEL HEADERS (Recommendation)
+--------------------------------------------------------------------------------
+
+Contributors are encouraged to mark new source files with the appropriate
+SPDX header on the first or second line, immediately after a shebang or
+encoding declaration when present:
+
+    # SPDX-License-Identifier: MIT
+or
+    % SPDX-License-Identifier: CC-BY-4.0
+
+This is informational; the canonical authority remains Section 1.
+
+--------------------------------------------------------------------------------
+SECTION 3.  INTRA-FILE SPLIT — Mixed-Content Files (docs/web/*.html)
+--------------------------------------------------------------------------------
+
+The HTML articles `mouth_cloud_effect_EN.html` and
+`mouth_cloud_effect_HE.html` contain both:
+
+  (a) STRUCTURAL HTML / CSS / JS — DOM hierarchy, layout, styling,
+      behaviour. Licensed under the MIT License.
+
+  (b) SCIENTIFIC CONTENT — the explanatory prose, the equations, the
+      thermodynamic derivations, the figures, and any direct exposition
+      of the physical model presented in OADF_academic_paper.tex.
+      Licensed under CC BY 4.0.
+
+Reuse of (a) without (b) does not require academic attribution beyond the
+MIT notice. Reuse of (b) — verbatim, translated, paraphrased, or adapted —
+requires CC BY 4.0 attribution to Liran Schwartz, including a reference
+to the canonical citation in CITATION.cff and the project URL
+https://github.com/LiranOG/OADF.
+
+--------------------------------------------------------------------------------
+SECTION 4.  ATTRIBUTION REQUIREMENTS UNDER CC BY 4.0
+--------------------------------------------------------------------------------
+
+Reuse, redistribution, or derivative work of any CC BY 4.0-licensed
+material listed in Section 1.B must include, at minimum:
+
+  1. Credit to the author: "Liran Schwartz (ORCID: 0009-0008-8035-1308)".
+  2. A link to the canonical project: https://github.com/LiranOG/OADF.
+  3. An indication of any changes made to the original.
+  4. A reference to the CC BY 4.0 license, ideally by canonical URL:
+     https://creativecommons.org/licenses/by/4.0/
+
+The full legal text of CC BY 4.0 is hosted canonically at:
+  https://creativecommons.org/licenses/by/4.0/legalcode
+and is incorporated into this repository BY REFERENCE. By distributing
+derivative work, you accept its terms.
+
+--------------------------------------------------------------------------------
+SECTION 5.  FULL TEXT OF THE MIT LICENSE (Software Layer + Project Metadata)
+--------------------------------------------------------------------------------
+
+MIT License
+
+Copyright (c) 2024–2026 Liran Schwartz
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--------------------------------------------------------------------------------
+SECTION 6.  CC BY 4.0 — HUMAN-READABLE SUMMARY (Non-Binding)
+--------------------------------------------------------------------------------
+
+The binding legal code is at:
+  https://creativecommons.org/licenses/by/4.0/legalcode
+The following summary is provided for convenience only and does not
+replace or restrict the canonical terms.
+
+You are free to:
+  - Share — copy and redistribute the material in any medium or format.
+  - Adapt — remix, transform, and build upon the material for any
+            purpose, including commercially.
+
+Under the following terms:
+  - Attribution — You must give appropriate credit, provide a link to
+    the license, and indicate if changes were made. You may do so in any
+    reasonable manner, but not in any way that suggests the licensor
+    endorses you or your use.
+
+No additional restrictions — You may not apply legal terms or
+technological measures that legally restrict others from doing anything
+the license permits.
+
+================================================================================
+  END OF LICENSE
+================================================================================

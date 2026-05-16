@@ -1,0 +1,154 @@
+# =============================================================================
+#  OADF :: .gitignore
+#  Scope: LaTeX + Python + Web + multi-OS + common editors
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# LaTeX — auxiliary / intermediate build artifacts
+# -----------------------------------------------------------------------------
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.brf
+*.dvi
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex
+*.synctex.gz
+*.synctex(busy)
+*.toc
+*.vrb
+*.xdv
+
+# latexmk caches & isolated build dirs
+.latexmk/
+docs/paper/.build/
+**/_minted-*/
+**/*.pyg
+
+# BibTeX / biber side products
+*-blx.bib
+*-blx.aux
+*.bbl-SAVE-ERROR
+*.blg-SAVE-ERROR
+
+# Hyperref / glossaries / nomencl
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.glsdefs
+*.nlg
+*.nlo
+*.nls
+
+# Compressed archive output from `latexmk -gz`
+*.gz
+!**/package-lock.json.gz   # explicit allowlist example; remove if unused
+
+# -----------------------------------------------------------------------------
+# Python
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# -----------------------------------------------------------------------------
+# Node / web tooling (in case future tooling lands)
+# -----------------------------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# -----------------------------------------------------------------------------
+# OS metadata
+# -----------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# -----------------------------------------------------------------------------
+# Editor / IDE local state
+# -----------------------------------------------------------------------------
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+.history/
+
+# -----------------------------------------------------------------------------
+# Local secrets / environment
+# -----------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# -----------------------------------------------------------------------------
+# Project-local scratch / logs
+# -----------------------------------------------------------------------------
+tmp/
+temp/
+*.tmp
+*.bak
+*.orig
+*.rej
+
+# -----------------------------------------------------------------------------
+# Allowlist — keep canonical, version-controlled output
+# -----------------------------------------------------------------------------
+!docs/paper/OADF_academic_paper.pdf
+
+# -----------------------------------------------------------------------------
+# Internal / generated metadata payloads — never publish
+# -----------------------------------------------------------------------------
+*.yaml
+*.yml
+!.github/**/*.yml
+!.github/**/*.yaml

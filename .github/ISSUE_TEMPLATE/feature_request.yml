@@ -1,0 +1,101 @@
+name: Feature Request
+description: Propose a physics-model refinement, a new translation, additional tooling, or documentation enhancement.
+title: "[FEATURE] <concise description>"
+labels: ["enhancement", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for proposing an improvement to OADF.
+        Please be specific and grounded — speculative requests without
+        citation, mechanism, or use-case will be closed.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      options:
+        - label: I searched existing issues and Discussions for similar proposals.
+          required: true
+        - label: I have read [`CONTRIBUTING.md`](../blob/main/CONTRIBUTING.md) and the request is in scope.
+          required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: What kind of enhancement is this?
+      options:
+        - Physics-model refinement (new closure / correction term / alternate framework)
+        - Experimental dataset or measurement protocol
+        - New language translation of the popular-science HTML article
+        - Typographic / pedagogical clarification of the paper
+        - Additional figure / plot / table
+        - Tooling — Makefile, validator, CI, dev environment
+        - Documentation — README / CONTRIBUTING / SECURITY
+        - Repository hygiene (badges, metadata, .gitattributes, …)
+        - Other (specify below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: |
+        Why is this needed? What problem does it solve, what gap does it
+        fill, or what observation does it accommodate?
+      placeholder: |
+        The current model assumes Phase II compression is isothermal.
+        Recent measurements by [Author, Year] show buccal-cavity wall
+        thermalization is incomplete on timescales shorter than X ms,
+        suggesting a finite adiabatic correction. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: |
+        Describe the change concretely. For physics changes, give equations
+        and citations. For translations, give the target language and
+        translator credentials. For tooling, give the desired UX.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What other approaches did you weigh? Why is this the best?
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References / citations
+      description: |
+        For physics or experimental requests, cite peer-reviewed literature
+        in BibTeX or numbered-reference form. For translations, link to
+        a sample of the translator's prior work if available.
+      render: text
+
+  - type: checkboxes
+    id: willingness
+    attributes:
+      label: Implementation willingness
+      description: Are you offering to implement this yourself?
+      options:
+        - label: I am willing to submit a PR implementing this proposal.
+        - label: I can co-author or review, but cannot implement alone.
+        - label: I am requesting only — implementation by someone else.
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Diagrams, prior art, related issues.

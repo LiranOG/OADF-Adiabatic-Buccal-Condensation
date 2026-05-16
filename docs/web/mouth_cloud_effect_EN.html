@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Mouth-Cloud Effect — The Physics of an Everyday Phenomenon</title>
+<style>
+:root{
+  --bg: #0b1018;
+  --bg-2: #0f1622;
+  --ink: #e8e2d3;
+  --ink-soft: #b8b2a3;
+  --ink-muted: #8a8472;
+  --rule: #1f2a3a;
+  --accent: #d4af6a;
+  --cyan: #7ec4d6;
+  --warm: #e89a6a;
+  --max-w: 720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 0%, rgba(126,196,214,0.08), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 30%, rgba(212,175,106,0.05), transparent 60%),
+    radial-gradient(ellipse 50% 60% at 50% 100%, rgba(232,154,106,0.04), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+body::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.9  0 0 0 0 0.85  0 0 0 0 0.7  0 0 0 0.03 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+main{
+  position: relative;
+  z-index: 2;
+}
+
+/* HERO */
+.hero{
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 1.5rem 5rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+}
+.kicker{
+  font-family: Consolas, 'Liberation Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.kicker::before{
+  content:"";
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+h1{
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 300;
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+  color: var(--ink);
+}
+h1 em{
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 300;
+}
+.hero-lede{
+  font-size: 1.25rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 580px;
+  font-weight: 300;
+  margin-bottom: 3rem;
+}
+.byline{
+  font-family: Consolas, 'Liberation Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.15em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+.byline span strong{
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* SECTIONS */
+article{
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+section{
+  margin-bottom: 5rem;
+}
+.section-num{
+  font-family: Consolas, 'Liberation Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  display: block;
+}
+h2{
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin-bottom: 2rem;
+  color: var(--ink);
+}
+h3{
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 500;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--ink);
+}
+p{
+  margin-bottom: 1.4rem;
+  color: var(--ink);
+}
+p.lede{
+  font-size: 1.18rem;
+  color: var(--ink-soft);
+  font-weight: 300;
+  font-style: italic;
+}
+strong{
+  color: var(--accent);
+  font-weight: 500;
+}
+em{
+  color: var(--cyan);
+  font-style: italic;
+}
+
+/* DROP CAP */
+.dropcap::first-letter{
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 4.5rem;
+  font-weight: 300;
+  float: left;
+  line-height: 0.85;
+  padding-right: 0.5rem;
+  padding-top: 0.4rem;
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* PULLQUOTE */
+.pullquote{
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.6rem;
+  line-height: 1.3;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--ink);
+  padding: 2rem 0 2rem 1.5rem;
+  border-left: 2px solid var(--accent);
+  margin: 2.5rem 0;
+}
+.pullquote::before{
+  content:""";
+  font-size: 3rem;
+  line-height: 0;
+  vertical-align: -0.4em;
+  color: var(--accent);
+  margin-right: 0.2rem;
+}
+
+/* STAGE CARDS */
+.stages{
+  display: grid;
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+}
+.stage{
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  padding: 1.8rem 1.8rem 1.8rem 4.5rem;
+  position: relative;
+  border-radius: 2px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.stage:hover{
+  border-color: var(--accent);
+}
+.stage-num{
+  position: absolute;
+  left: 1.5rem;
+  top: 1.7rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--accent);
+  line-height: 1;
+}
+.stage h4{
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+}
+.stage p{
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  margin-bottom: 0;
+}
+
+/* DIAGRAM CONTAINER */
+.diagram{
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  padding: 2rem 1.5rem;
+  margin: 2.5rem 0;
+  border-radius: 2px;
+}
+.diagram svg{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.diagram-caption{
+  font-family: Consolas, 'Liberation Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.05em;
+  text-align: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* FACT BOX */
+.factbox{
+  background: linear-gradient(135deg, rgba(212,175,106,0.08), rgba(126,196,214,0.04));
+  border: 1px solid rgba(212,175,106,0.3);
+  padding: 1.8rem;
+  margin: 2.5rem 0;
+  border-radius: 2px;
+}
+.factbox-label{
+  font-family: Consolas, 'Liberation Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+.factbox p{
+  margin: 0;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+/* COMPARISON GRID */
+.cousins{
+  display: grid;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.cousin{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.2rem;
+  align-items: start;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.cousin:last-child{ border-bottom: none; }
+.cousin-icon{
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+.cousin h4{
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  color: var(--ink);
+}
+.cousin p{
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* MYTHS */
+.myth{
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--rule);
+}
+.myth-claim{
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--warm);
+  margin-bottom: 0.4rem;
+}
+.myth-claim::before{
+  content: "✗ ";
+  color: var(--warm);
+  font-style: normal;
+}
+.myth-truth{
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.myth-truth::before{
+  content: "→ ";
+  color: var(--cyan);
+}
+
+/* FOOTER */
+footer{
+  max-width: var(--max-w);
+  margin: 6rem auto 0;
+  padding: 3rem 1.5rem 4rem;
+  border-top: 1px solid var(--rule);
+  font-family: Consolas, 'Liberation Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  line-height: 1.8;
+}
+footer h3{
+  font-family: Consolas, 'Liberation Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+}
+footer ul{
+  list-style: none;
+  padding: 0;
+}
+footer li{
+  margin-bottom: 0.6rem;
+  padding-left: 1rem;
+  position: relative;
+}
+footer li::before{
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+.colophon{
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.7rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.1em;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero > *{
+  animation: fadeUp 0.9s ease both;
+}
+.hero .kicker{ animation-delay: 0.1s; }
+.hero h1{ animation-delay: 0.25s; }
+.hero .hero-lede{ animation-delay: 0.5s; }
+.hero .byline{ animation-delay: 0.7s; }
+
+/* RESPONSIVE */
+@media (max-width: 600px){
+  body{ font-size: 17px; }
+  .hero{ padding: 3rem 1.2rem 4rem; }
+  article{ padding: 0 1.2rem; }
+  .stage{ padding: 1.4rem 1.4rem 1.4rem 1.4rem; }
+  .stage-num{ position: static; display: block; margin-bottom: 0.5rem; }
+  .pullquote{ font-size: 1.3rem; padding-left: 1rem; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<header class="hero">
+  <div class="kicker">Field Notes · Atmospheric Physics</div>
+  <h1>The Mouth-Cloud <em>Effect</em></h1>
+  <p class="hero-lede">A childhood trick — seal your lips, build up pressure, then let it go — produces what looks like smoke. It isn't smoke. It's a tiny indoor cloud, born from the same physics that fills champagne bottlenecks with mist, drives thunderheads up the side of mountains, and once helped physicists discover the positron.</p>
+  <div class="byline">
+    <span><strong>Topic</strong> Adiabatic decompression</span>
+    <span><strong>Reading time</strong> 9 minutes</span>
+    <span><strong>Level</strong> Curious general reader</span>
+  </div>
+</header>
+
+<article>
+
+<section>
+  <span class="section-num">§ 01 — The Observation</span>
+  <h2>The trick you probably already know</h2>
+  <p class="dropcap">Close your mouth. Press your lips together hard, maybe even hold them shut with your hand. Click your tongue against the roof of your mouth ten or fifteen times to pump air into the sealed space. Then push outward with your cheeks and diaphragm — really push, until the pressure builds — and suddenly open your mouth.</p>
+  <p>A pale, ghostly puff escapes. It looks like smoke. It curls. It dissipates within a second or two.</p>
+  <p>Almost everyone has done this at some point. Almost nobody knows what it is. The internet has surprisingly little to say about it. There is no Wikipedia article called <em>The Mouth-Cloud Effect</em>. And yet the physics behind it is not only well understood — it is one of the most important phenomena in twentieth-century physics, packaged into a form you can do with no equipment at all.</p>
+</section>
+
+<section>
+  <span class="section-num">§ 02 — The Punchline</span>
+  <h2>It is not smoke. It is a cloud.</h2>
+  <p>The white puff is not combustion residue, not particles of anything you ate, not microscopic skin cells, not bacteria. It is liquid water. Specifically: it is a swarm of <strong>microscopic water droplets</strong>, each one a few microns across, suspended briefly in air. The same physical object as a fog bank, a low cloud, or the haze hovering above a cup of tea — only on the scale of your mouth.</p>
+  <div class="pullquote">A cloud is just water that has changed its mind about being a gas. The mouth, briefly, is a place where water can be persuaded to change its mind very quickly.</div>
+  <p>To make a cloud anywhere — in the sky, in a bottle, in a laboratory chamber, in your mouth — you need three things to happen in sequence: <strong>air saturated with water vapor</strong>, <strong>a sudden drop in temperature</strong>, and <strong>tiny particles for the water to land on</strong>. Your mouth supplies all three for free. That is the entire story. The next sections are just the details.</p>
+</section>
+
+<section>
+  <span class="section-num">§ 03 — The Mechanism</span>
+  <h2>How a cloud gets made in your mouth</h2>
+  <p>The phenomenon has four stages. Each one is interesting on its own, but the surprise is how cleanly they hand off to one another.</p>
+
+  <div class="stages">
+    <div class="stage">
+      <span class="stage-num">i</span>
+      <h4>Saturation</h4>
+      <p>The inside of the mouth sits at body temperature — about 37°C — and is wet everywhere. Saliva, gum tissue, tongue, palate, throat — every surface is a tiny evaporation engine. Within seconds of closing your lips, the trapped air reaches roughly 100% relative humidity. The air is now <em>saturated</em>: holding as much water vapor as it physically can at that temperature. This is the precondition for everything that follows.</p>
+    </div>
+    <div class="stage">
+      <span class="stage-num">ii</span>
+      <h4>Compression</h4>
+      <p>Tongue clicks, cheek squeezes, the diaphragm pushing upward — all of these shrink the volume of the sealed cavity. Compressing a gas heats it slightly and raises its pressure. Critically, the warmer compressed air can now hold <em>more</em> water vapor than before, so a little extra moisture evaporates off the moist tissue lining the mouth, keeping the air saturated even at the higher temperature.</p>
+    </div>
+    <div class="stage">
+      <span class="stage-num">iii</span>
+      <h4>Sudden release</h4>
+      <p>Opening the lips drops the internal pressure back to atmospheric in a few thousandths of a second. The air expands explosively. Because the expansion is so fast, the gas has no time to exchange heat with its surroundings — this is what physicists call an <strong>adiabatic process</strong>. The gas pays for its expansion out of its own internal energy. Its temperature drops sharply. Estimated cooling: anywhere from 5°C to 20°C below body temperature, depending on how hard you pushed.</p>
+    </div>
+    <div class="stage">
+      <span class="stage-num">iv</span>
+      <h4>Condensation</h4>
+      <p>Cold air cannot hold as much water vapor as warm air. The puff that just expanded out of your mouth is now <em>supersaturated</em> — carrying more water than it ought to. The excess water finds nearby surfaces to glom onto: invisible aerosol particles from your saliva, organic molecules from your breath, anything floating in the air. Around each particle, a tiny droplet grows. Millions of droplets. A cloud.</p>
+    </div>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#d4af6a" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#d4af6a" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <!-- axes -->
+      <line x1="60" y1="200" x2="560" y2="200" stroke="#1f2a3a" stroke-width="1"/>
+      <line x1="60" y1="40" x2="60" y2="200" stroke="#1f2a3a" stroke-width="1"/>
+      <!-- saturation curve (Clausius-Clapeyron) -->
+      <path d="M 60 195 Q 200 190, 300 150 T 560 50" fill="none" stroke="#7ec4d6" stroke-width="2"/>
+      <path d="M 60 195 Q 200 190, 300 150 T 560 50 L 560 200 L 60 200 Z" fill="url(#g1)" opacity="0.2"/>
+      <!-- before point -->
+      <circle cx="380" cy="105" r="5" fill="#d4af6a"/>
+        <text x="395" y="100" fill="#e8e2d3" font-family="Consolas, monospace" font-size="11">before: 37°C, saturated</text>
+      <!-- arrow -->
+      <path d="M 380 110 Q 320 130, 220 165" stroke="#e89a6a" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
+      <polygon points="220,165 230,160 228,170" fill="#e89a6a"/>
+      <!-- after point -->
+      <circle cx="220" cy="165" r="5" fill="#e89a6a"/>
+        <text x="80" y="170" fill="#e8e2d3" font-family="Consolas, monospace" font-size="11">after expansion: cold + supersaturated</text>
+      <!-- labels -->
+        <text x="560" y="220" fill="#8a8472" font-family="Consolas, monospace" font-size="10" text-anchor="end">temperature →</text>
+        <text x="60" y="30" fill="#8a8472" font-family="Consolas, monospace" font-size="10">↑ water vapor the air can hold</text>
+    </svg>
+    <div class="diagram-caption">fig. 1 — the saturation curve. cooling drags the air below its capacity line, forcing condensation.</div>
+  </div>
+</section>
+
+<section>
+  <span class="section-num">§ 04 — The Biology</span>
+  <h2>Why the mouth is the perfect cloud factory</h2>
+  <p>You cannot reproduce this experiment with a balloon and a kitchen sink. The mouth has three properties that, taken together, make it almost ideal for the job.</p>
+  <p><strong>It is permanently humid.</strong> Outside air, even on a steamy summer day, is rarely above 80% relative humidity. The mouth is essentially 100% all the time. This means no preparatory work is needed — you skip the entire "saturate the chamber" step that physics teachers spend half a lab session on.</p>
+  <p><strong>It is warm.</strong> Body temperature gives the air a high vapor-carrying capacity to begin with. The hotter the starting air, the more water vapor it holds, and the more water there is to condense out when temperature drops. A cold mouth would produce a weaker puff.</p>
+  <p><strong>It comes pre-seeded with condensation nuclei.</strong> This is the subtle point. Pure water vapor, in clean air, does <em>not</em> easily condense even when supersaturated. It needs something to land on — what atmospheric scientists call a <strong>cloud condensation nucleus (CCN)</strong>. The mouth is full of them: micro-droplets of saliva torn from the tongue and lips during the tongue-clicking, dissolved salts and proteins, organic molecules from breath. Each one is a free condensation site, no extra effort required.</p>
+
+  <div class="factbox">
+    <span class="factbox-label">A small surprise</span>
+    <p>If you could somehow do this trick inside a perfectly clean chamber with no aerosols — no saliva droplets, no dust — you would get nothing. The air would become supersaturated and stay supersaturated. The water would simply have nowhere to go. C. T. R. Wilson, who won the 1927 Nobel Prize in Physics, spent years figuring this out the hard way.</p>
+  </div>
+</section>
+
+<section>
+  <span class="section-num">§ 05 — The Relatives</span>
+  <h2>The same physics, in five other places</h2>
+  <p>Once you know what you're looking at, you start seeing the same trick everywhere.</p>
+
+  <div class="cousins">
+    <div class="cousin">
+      <svg class="cousin-icon" viewBox="0 0 40 40" fill="none">
+        <path d="M14 6 L26 6 L24 14 L24 28 Q24 34 20 34 Q16 34 16 28 L16 14 Z" stroke="#d4af6a" stroke-width="1.5"/>
+        <circle cx="20" cy="20" r="1" fill="#7ec4d6"/>
+        <circle cx="22" cy="24" r="1" fill="#7ec4d6"/>
+        <circle cx="18" cy="22" r="0.8" fill="#7ec4d6"/>
+      </svg>
+      <div>
+        <h4>Champagne fog</h4>
+        <p>When the cork pops, pressurized CO₂ and water vapor expand adiabatically into the bottleneck. The temperature can drop briefly to below −80°C. Researchers have photographed it; Liger-Belair's lab in Reims has published quantitative studies in <em>Scientific Reports</em>.</p>
+      </div>
+    </div>
+    <div class="cousin">
+      <svg class="cousin-icon" viewBox="0 0 40 40" fill="none">
+        <rect x="14" y="10" width="12" height="22" rx="1" stroke="#d4af6a" stroke-width="1.5"/>
+        <circle cx="20" cy="14" r="1.5" fill="#e89a6a"/>
+        <path d="M18 8 Q20 4, 22 8" stroke="#7ec4d6" stroke-width="1" fill="none"/>
+      </svg>
+      <div>
+        <h4>The soda-can puff</h4>
+        <p>Crack open a cold can of soda or sparkling water. The little wisp that drifts out of the opening is the same thing — pressurized CO₂ rushes out, expands, cools the saturated air with it, condenses water vapor.</p>
+      </div>
+    </div>
+    <div class="cousin">
+      <svg class="cousin-icon" viewBox="0 0 40 40" fill="none">
+        <path d="M6 20 L34 20" stroke="#d4af6a" stroke-width="1.5"/>
+        <path d="M14 16 L14 24 L20 28 L26 24 L26 16 L20 12 Z" stroke="#7ec4d6" stroke-width="1" fill="none"/>
+      </svg>
+      <div>
+        <h4>The Wilson cloud chamber</h4>
+        <p>A sealed glass cylinder filled with saturated air. Pull a piston. Adiabatic expansion supersaturates the vapor. When a cosmic ray flies through, it leaves a trail of ions — and the supersaturated water condenses onto them. You can see the path of a subatomic particle. Earned Wilson the Nobel Prize in 1927.</p>
+      </div>
+    </div>
+    <div class="cousin">
+      <svg class="cousin-icon" viewBox="0 0 40 40" fill="none">
+        <path d="M4 28 Q12 28 16 24 L24 16 Q28 12 36 12" stroke="#d4af6a" stroke-width="1.5" fill="none"/>
+        <ellipse cx="22" cy="22" rx="9" ry="3" stroke="#7ec4d6" stroke-width="1" fill="none" opacity="0.6"/>
+      </svg>
+      <div>
+        <h4>Sonic-boom condensation</h4>
+        <p>When a jet breaks the sound barrier in humid air, the rapid pressure drop just behind the shockwave triggers the same condensation. The famous cone-shaped vapor cloud around supersonic aircraft is, mechanically, your mouth-puff at Mach 1.</p>
+      </div>
+    </div>
+    <div class="cousin">
+      <svg class="cousin-icon" viewBox="0 0 40 40" fill="none">
+        <path d="M6 32 Q12 18 20 18 Q28 18 34 32" stroke="#d4af6a" stroke-width="1.5" fill="none"/>
+        <circle cx="14" cy="14" r="2" fill="#7ec4d6" opacity="0.6"/>
+        <circle cx="22" cy="10" r="3" fill="#7ec4d6" opacity="0.6"/>
+        <circle cx="30" cy="14" r="2" fill="#7ec4d6" opacity="0.6"/>
+      </svg>
+      <div>
+        <h4>Real clouds in real skies</h4>
+        <p>Atmospheric clouds form when a parcel of warm, humid air rises, expanding adiabatically as it climbs into lower pressure. The temperature drops, water vapor supersaturates, and droplets condense around dust, sea salt, and pollen. A cumulus cloud is, scaled up by ten million, exactly the puff that came out of your mouth.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="section-num">§ 06 — Myth-Busting</span>
+  <h2>Three things people get wrong</h2>
+
+  <div class="myth">
+    <p class="myth-claim">"It's the same thing as seeing your breath on a cold day."</p>
+    <p class="myth-truth">Related, but different mechanism. Cold-day breath fog is <em>mixing fog</em> — warm humid breath meeting cold dry air, with the mixture briefly above saturation. The mouth-cloud effect is <em>expansion fog</em> — same air, cooled adiabatically by its own decompression. You can produce the mouth-cloud in a hot room where you would never see normal breath fog.</p>
+  </div>
+  <div class="myth">
+    <p class="myth-claim">"The pressure inside the mouth must be enormous."</p>
+    <p class="myth-truth">It isn't. You can probably reach only 1.05 to 1.15 atmospheres — a few percent above ambient. But adiabatic cooling is sensitive enough that even small pressure drops produce visible condensation, provided the air is saturated and aerosols are present. Both conditions are normally available in the mouth during the maneuver.</p>
+  </div>
+  <div class="myth">
+    <p class="myth-claim">"The fog comes from saliva droplets directly, not condensation."</p>
+    <p class="myth-truth">Saliva droplets are tiny and mostly invisible to the eye. What you see are larger water droplets that have grown <em>onto</em> those invisible saliva particles. The saliva acts as a scaffold; the bulk mass of each visible droplet is condensed water from the surrounding vapor. Take away the cooling, and the saliva droplets are still there — just unseen.</p>
+  </div>
+</section>
+
+<section>
+  <span class="section-num">§ 07 — A Question of Naming</span>
+  <h2>Why doesn't this phenomenon have a name?</h2>
+  <p>Phenomena get scientific names in one of two ways. Either someone discovers something genuinely new and the name sticks to them (the <em>Doppler effect</em>, the <em>Joule-Thomson effect</em>), or a community of practitioners uses a descriptive label often enough that it solidifies (<em>champagne fog</em>, <em>sonic-boom condensation</em>). Neither has happened here. The underlying physics — adiabatic decompression of saturated air — has been understood for more than a century. The specific instance of doing it with a human mouth was, until now, mostly a thing children rediscover on playgrounds and then forget.</p>
+  <p>One could propose a name. <em>Oral adiabatic decompression fog</em> works technically. <em>The mouth-cloud effect</em> works popularly. Neither is in any textbook. The phenomenon sits in the curious category of things that are simultaneously universally experienced and completely undocumented — which, oddly, is more common than people think.</p>
+  <p class="lede">If you ever wondered whether physics had anything left to say about ordinary life, the answer is: yes, all the time, and most of it has not been written down.</p>
+</section>
+
+</article>
+
+<footer>
+  <h3>For further reading</h3>
+  <ul>
+    <li>C. T. R. Wilson (1911) — original cloud-chamber papers, <em>Proceedings of the Royal Society A</em></li>
+    <li>Liger-Belair et al. (2017) — "Unveiling CO₂ heterogeneous freezing plumes during champagne cork popping," <em>Scientific Reports</em></li>
+    <li>Köhler, H. (1936) — "The nucleus in and the growth of hygroscopic droplets," <em>Transactions of the Faraday Society</em></li>
+    <li>Pruppacher & Klett (2010) — <em>Microphysics of Clouds and Precipitation</em>, the standard reference</li>
+    <li>Pandis & Seinfeld (1998) — <em>Atmospheric Chemistry and Physics</em>, for the math</li>
+  </ul>
+  <div class="colophon">Set with local system fonts · Dark mode article layout · One of three companion pieces · <span style="color:var(--accent)">EN edition</span></div>
+</footer>
+
+</main>
+</body>
+</html>

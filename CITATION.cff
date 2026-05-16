@@ -1,0 +1,96 @@
+# -----------------------------------------------------------------------------
+#  Citation File Format v1.2.0
+#  Spec: https://citation-file-format.github.io/
+#  Rendered by GitHub as a "Cite this repository" button on the repo home page.
+# -----------------------------------------------------------------------------
+cff-version: 1.2.0
+message: >-
+  If you reference this work, the model, or the closed-form supersaturation
+  expression in derivative scholarship, please cite the metadata below.
+type: software
+title: >-
+  Oral Adiabatic Decompression Fog (OADF):
+  A Thermodynamic and Aerosol-Physics Analysis of Visible Vapor Condensation
+  in the Human Buccal Cavity Under Rapid Decompression
+abstract: >-
+  A unified thermodynamic and aerosol-microphysical analysis of the brief,
+  visible white plume produced when a sealed human buccal cavity is
+  mechanically pressurized and then rapidly opened. The phenomenon is
+  identified as a low-cost biological analogue of the Wilson expansion cloud
+  chamber. Closed-form expressions for the post-expansion supersaturation
+  ratio are derived from the Poisson adiabatic equation, the Clausius-
+  Clapeyron relation, and Koehler theory.
+authors:
+  - family-names: Schwartz
+    given-names: Liran
+    website: "https://github.com/LiranOG"
+    orcid: "https://orcid.org/0009-0008-8035-1308"
+    email: "scliran9@gmail.com"
+identifiers:
+  - type: url
+    value: "https://github.com/LiranOG/OADF"
+    description: Canonical source repository.
+repository-code: "https://github.com/LiranOG/OADF"
+url: "https://github.com/LiranOG/OADF"
+# -----------------------------------------------------------------------------
+# License of the WORK described by this metadata (the scholarly paper and its
+# scientific content), NOT of the repository as a whole. The repository
+# operates under a dual-licensing architecture - see LICENSE.
+#   Academic Layer (this work)              CC-BY-4.0
+#   Software Layer (build automation etc.)  MIT
+# -----------------------------------------------------------------------------
+license: CC-BY-4.0
+license-url: "https://creativecommons.org/licenses/by/4.0/legalcode"
+version: "0.1.0"
+date-released: "2024-01-01"
+keywords:
+  - thermodynamics
+  - adiabatic-decompression
+  - wilson-cloud-chamber
+  - fluid-dynamics
+  - supersaturation
+  - cloud-condensation-nuclei
+  - koehler-theory
+  - bioaerosol
+  - aerosol-microphysics
+  - poisson-adiabatic
+  - clausius-clapeyron
+  - respiratory-physics
+  - physics-education
+references:
+  - type: article
+    title: >-
+      On the cloud method of making visible ions and the tracks of ionizing
+      particles
+    authors:
+      - family-names: Wilson
+        given-names: Charles Thomson Rees
+    journal: Philosophical Transactions of the Royal Society A
+    year: 1911
+    volume: 211
+    start: 392
+    end: 397
+  - type: article
+    title: The nucleus in and the growth of hygroscopic droplets
+    authors:
+      - family-names: Koehler
+        given-names: Hilding
+    journal: Transactions of the Faraday Society
+    year: 1936
+    volume: 32
+    start: 1152
+    end: 1161
+preferred-citation:
+  type: generic
+  title: >-
+    Oral Adiabatic Decompression Fog (OADF):
+    A Thermodynamic and Aerosol-Physics Analysis of Visible Vapor Condensation
+    in the Human Buccal Cavity Under Rapid Decompression
+  authors:
+    - family-names: Schwartz
+      given-names: Liran
+      website: "https://github.com/LiranOG"
+      orcid: "https://orcid.org/0009-0008-8035-1308"
+      email: "scliran9@gmail.com"
+  year: 2024
+  notes: Working draft. Repository at https://github.com/LiranOG/OADF.

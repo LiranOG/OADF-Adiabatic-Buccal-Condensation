@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אפקט ענן הפה — הפיזיקה של תופעה יומיומית</title>
+<style>
+:root{
+  --bg: #0b1018;
+  --bg-2: #0f1622;
+  --ink: #e8e2d3;
+  --ink-soft: #b8b2a3;
+  --ink-muted: #8a8472;
+  --rule: #1f2a3a;
+  --accent: #d4af6a;
+  --cyan: #7ec4d6;
+  --warm: #e89a6a;
+  --max-w: 720px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'David', 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  direction: rtl;
+}
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 80% 0%, rgba(126,196,214,0.08), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 20% 30%, rgba(212,175,106,0.05), transparent 60%),
+    radial-gradient(ellipse 50% 60% at 50% 100%, rgba(232,154,106,0.04), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+body::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.9  0 0 0 0 0.85  0 0 0 0 0.7  0 0 0 0.03 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+}
+main{ position: relative; z-index: 2; }
+
+/* HERO */
+.hero{
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 1.5rem 5rem;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  position: relative;
+}
+.kicker{
+  font-family: Consolas, 'Liberation Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  direction: ltr;
+  text-align: right;
+  justify-content: flex-end;
+}
+.kicker::after{
+  content:"";
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+h1{
+  font-family: 'David', 'Times New Roman', serif;
+  font-weight: 300;
+  font-size: clamp(2.8rem, 7vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+  color: var(--ink);
+}
+h1 em{
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+.hero-lede{
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 620px;
+  font-weight: 300;
+  margin-bottom: 3rem;
+}
+.byline{
+  font-family: Arial, 'Noto Sans Hebrew', sans-serif;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.05em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+}
+.byline span strong{
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* SECTIONS */
+article{
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+section{ margin-bottom: 5rem; }
+.section-num{
+  font-family: Consolas, 'Liberation Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  display: block;
+  direction: ltr;
+  text-align: right;
+}
+h2{
+  font-family: 'David', 'Times New Roman', serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 4.5vw, 2.8rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 2rem;
+  color: var(--ink);
+}
+h3{
+  font-family: 'David', 'Times New Roman', serif;
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 1.25;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--ink);
+}
+p{
+  margin-bottom: 1.5rem;
+  color: var(--ink);
+}
+p.lede{
+  font-size: 1.22rem;
+  color: var(--ink-soft);
+  font-weight: 300;
+  font-style: italic;
+}
+strong{
+  color: var(--accent);
+  font-weight: 500;
+}
+em{
+  color: var(--cyan);
+  font-style: italic;
+}
+
+/* DROP CAP */
+.dropcap::first-letter{
+  font-family: 'David', 'Times New Roman', serif;
+  font-size: 4.2rem;
+  font-weight: 500;
+  float: right;
+  line-height: 0.85;
+  padding-left: 0.6rem;
+  padding-top: 0.4rem;
+  color: var(--accent);
+}
+
+/* PULLQUOTE */
+.pullquote{
+  font-family: 'David', 'Times New Roman', serif;
+  font-size: 1.65rem;
+  line-height: 1.4;
+  font-weight: 400;
+  color: var(--ink);
+  padding: 2rem 1.5rem 2rem 0;
+  border-right: 2px solid var(--accent);
+  margin: 2.5rem 0;
+}
+.pullquote::before{
+  content:""";
+  font-size: 3rem;
+  line-height: 0;
+  vertical-align: -0.4em;
+  color: var(--accent);
+  margin-left: 0.3rem;
+}
+
+/* STAGE CARDS */
+.stages{
+  display: grid;
+  gap: 1.5rem;
+  margin: 2.5rem 0;
+}
+.stage{
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  padding: 1.8rem 4.5rem 1.8rem 1.8rem;
+  position: relative;
+  border-radius: 2px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.stage:hover{ border-color: var(--accent); }
+.stage-num{
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  font-family: 'David', 'Times New Roman', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--accent);
+  line-height: 1;
+  direction: ltr;
+}
+.stage h4{
+  font-family: 'David', 'Times New Roman', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--ink);
+}
+.stage p{
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  margin-bottom: 0;
+}
+
+/* DIAGRAM */
+.diagram{
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  padding: 2rem 1.5rem;
+  margin: 2.5rem 0;
+  border-radius: 2px;
+}
+.diagram svg{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.diagram-caption{
+  font-family: Arial, 'Noto Sans Hebrew', sans-serif;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.02em;
+  text-align: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+
+/* FACT BOX */
+.factbox{
+  background: linear-gradient(135deg, rgba(212,175,106,0.08), rgba(126,196,214,0.04));
+  border: 1px solid rgba(212,175,106,0.3);
+  padding: 1.8rem;
+  margin: 2.5rem 0;
+  border-radius: 2px;
+}
+.factbox-label{
+  font-family: Arial, 'Noto Sans Hebrew', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  display: block;
+}
+.factbox p{
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+/* COMPARISON */
+.cousins{
+  display: grid;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.cousin{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.2rem;
+  align-items: start;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.cousin:last-child{ border-bottom: none; }
+.cousin-icon{
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+.cousin h4{
+  font-family: 'David', 'Times New Roman', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+}
+.cousin p{
+  font-size: 1rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* MYTHS */
+.myth{
+  margin: 1.5rem 0;
+  padding-right: 1.5rem;
+  border-right: 1px solid var(--rule);
+}
+.myth-claim{
+  font-family: 'David', 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 1.08rem;
+  color: var(--warm);
+  margin-bottom: 0.5rem;
+}
+.myth-claim::before{
+  content: "✗ ";
+  color: var(--warm);
+  font-style: normal;
+}
+.myth-truth{
+  font-size: 1rem;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.myth-truth::before{
+  content: "← ";
+  color: var(--cyan);
+}
+
+/* FOOTER */
+footer{
+  max-width: var(--max-w);
+  margin: 6rem auto 0;
+  padding: 3rem 1.5rem 4rem;
+  border-top: 1px solid var(--rule);
+  font-family: Arial, 'Noto Sans Hebrew', sans-serif;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  line-height: 1.8;
+}
+footer h3{
+  font-family: Arial, 'Noto Sans Hebrew', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+}
+footer ul{
+  list-style: none;
+  padding: 0;
+}
+footer li{
+  margin-bottom: 0.7rem;
+  padding-right: 1rem;
+  position: relative;
+}
+footer li::before{
+  content: "—";
+  position: absolute;
+  right: 0;
+  color: var(--accent);
+}
+.colophon{
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+  letter-spacing: 0.05em;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.hero > *{ animation: fadeUp 0.9s ease both; }
+.hero .kicker{ animation-delay: 0.1s; }
+.hero h1{ animation-delay: 0.25s; }
+.hero .hero-lede{ animation-delay: 0.5s; }
+.hero .byline{ animation-delay: 0.7s; }
+
+/* RESPONSIVE */
+@media (max-width: 600px){
+  body{ font-size: 18px; }
+  .hero{ padding: 3rem 1.2rem 4rem; }
+  article{ padding: 0 1.2rem; }
+  .stage{ padding: 1.4rem; }
+  .stage-num{ position: static; display: block; margin-bottom: 0.5rem; }
+  .pullquote{ font-size: 1.35rem; padding-right: 1rem; }
+}
+</style>
+</head>
+<body>
+<main>
+
+<header class="hero">
+  <div class="kicker">פיזיקה אטמוספרית · רשימות שדה</div>
+  <h1>אפקט <em>ענן הפה</em></h1>
+  <p class="hero-lede">תעלול ילדות — לסגור את השפתיים, לבנות לחץ, ולשחרר — מייצר מה שנראה כמו עשן. זה לא עשן. זה ענן זעיר, ילוד אותה פיזיקה שממלאת בקבוקי שמפניה בערפל, מניעה ערמות סופה במעלה ההרים, ובזמנו עזרה לפיזיקאים לגלות את הפוזיטרון.</p>
+  <div class="byline">
+    <span><strong>נושא</strong> · התפשטות אדיאבטית</span>
+    <span><strong>זמן קריאה</strong> · 9 דקות</span>
+    <span><strong>רמה</strong> · קורא סקרן</span>
+  </div>
+</header>
+
+<article>
+
+<section>
+  <span class="section-num">§ 01 — התצפית</span>
+  <h2>התעלול שכנראה כבר עשית</h2>
+  <p class="dropcap">סוגר את הפה. לוחץ את השפתיים, אולי אפילו אוחז ביד שלא יזלוג אוויר. נוקש בלשון בחיך עשר או חמש-עשרה פעמים כדי לשאוב אוויר לתוך החלל האטום. אחר כך דוחק כלפי חוץ עם הלחיים והסרעפת — באמת דוחק, עד שהלחץ נבנה — ואז פותח את הפה פתאום.</p>
+  <p>מתעופפת החוצה ענן חיוורת, רפאית. זה נראה כמו עשן. זה מתפתל. זה מתפזר תוך שנייה או שתיים.</p>
+  <p>כמעט כל אחד עשה את זה איזשהו רגע בחיים. כמעט אף אחד לא יודע מה זה. לאינטרנט יש מפתיע מעט מה לומר על זה. אין ערך בוויקיפדיה בשם <em>אפקט ענן הפה</em>. ועם זאת, הפיזיקה שמאחורי התופעה לא רק מובנת היטב — היא אחת התופעות החשובות ביותר בפיזיקה של המאה ה-20, ארוזה בצורה שאפשר לבצע ללא ציוד כלשהו.</p>
+</section>
+
+<section>
+  <span class="section-num">§ 02 — הפואנטה</span>
+  <h2>זה לא עשן. זה ענן.</h2>
+  <p>ענן הלבן הזה אינו שיירי בעירה, אינו חלקיקים של משהו שאכלת, אינו תאי עור מיקרוסקופיים, אינו חיידקים. זה מים נוזליים. מדויק יותר: זה נחיל של <strong>טיפות מים מיקרוסקופיות</strong>, כל אחת בעובי כמה מיקרונים, מרחפות לרגע באוויר. אותו אובייקט פיזיקלי בדיוק שיוצר ערפל, ענני סטראטוס נמוכים, או את האד שעולה מספל תה — רק בקנה מידה של חלל הפה שלך.</p>
+  <div class="pullquote">ענן הוא פשוט מים שהחליפו את דעתם בנוגע להיותם גז. הפה, לרגע קצר, הוא מקום שבו אפשר לשכנע מים לשנות את דעתם מהר מאוד.</div>
+  <p>כדי לייצר ענן בכל מקום — בשמיים, בבקבוק, בתא מעבדה, בפה שלך — צריך שיקרו שלושה דברים ברצף: <strong>אוויר רווי באדי מים</strong>, <strong>ירידה חדה בטמפרטורה</strong>, ו<strong>חלקיקים זעירים שעליהם המים יוכלו לעגון</strong>. הפה שלך מספק את שלושתם בחינם. זה כל הסיפור. השאר הם רק הפרטים.</p>
+</section>
+
+<section>
+  <span class="section-num">§ 03 — המנגנון</span>
+  <h2>איך נוצר ענן בתוך הפה</h2>
+  <p>התופעה מורכבת מארבעה שלבים. כל אחד מהם מעניין בפני עצמו, אבל ההפתעה היא כמה חלק הם מועברים זה לזה.</p>
+
+  <div class="stages">
+    <div class="stage">
+      <span class="stage-num">i</span>
+      <h4>רוויה</h4>
+      <p>פנים הפה יושב בטמפרטורת הגוף — סביב 37°C — ורטוב בכל מקום. רוק, חניכיים, לשון, חיך, גרון — כל משטח הוא מנוע אידוי זעיר. תוך שניות מסגירת השפתיים, האוויר הכלוא מגיע לכ-100% לחות יחסית. האוויר כעת <em>רווי</em>: מחזיק את כמות אדי המים המקסימלית שהוא יכול להחזיק בטמפרטורה הזו. זה התנאי המקדים לכל מה שבא אחר כך.</p>
+    </div>
+    <div class="stage">
+      <span class="stage-num">ii</span>
+      <h4>דחיסה</h4>
+      <p>נקישות הלשון, סחיטת הלחיים, הסרעפת שדוחפת כלפי מעלה — כל אלה מקטינים את נפח החלל האטום. דחיסה של גז מחממת אותו מעט ומעלה את לחצו. באופן קריטי, האוויר החם והדחוס יכול עכשיו להחזיק <em>יותר</em> אדי מים מקודם, ולכן מעט לחות נוספת מתאדה מהרקמה הרטובה המצפה את הפה, ושומרת על האוויר רווי גם בטמפרטורה הגבוהה יותר.</p>
+    </div>
+    <div class="stage">
+      <span class="stage-num">iii</span>
+      <h4>שחרור פתאומי</h4>
+      <p>פתיחת השפתיים מורידה את הלחץ הפנימי בחזרה ללחץ האטמוספרי תוך אלפיות שנייה ספורות. האוויר מתפשט בהתפוצצות. כיוון שההתפשטות כה מהירה, לגז אין זמן להחליף חום עם סביבתו — וזה מה שפיזיקאים מכנים <strong>תהליך אדיאבטי</strong>. הגז משלם על התפשטותו מתוך האנרגיה הפנימית של עצמו. הטמפרטורה שלו צונחת חדות. הקירור המוערך: בין 5°C ל-20°C מתחת לטמפרטורת הגוף, תלוי בעוצמת הדחיפה.</p>
+    </div>
+    <div class="stage">
+      <span class="stage-num">iv</span>
+      <h4>התעבות</h4>
+      <p>אוויר קר אינו יכול להחזיק את אותה כמות אדים כמו אוויר חם. הפיח שבדיוק התפשט החוצה מהפה הוא כעת <em>על-רווי</em> — נושא יותר מים ממה שמותר לו. עודף המים מחפש משטחים סמוכים להידבק אליהם: חלקיקי אירוסול בלתי-נראים מהרוק שלך, מולקולות אורגניות מהנשימה שלך, כל דבר שמרחף באוויר. סביב כל חלקיק, גדלה טיפה זעירה. מיליוני טיפות. ענן.</p>
+    </div>
+  </div>
+
+  <div class="diagram">
+    <svg viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" dir="ltr">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#d4af6a" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#d4af6a" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <line x1="60" y1="200" x2="560" y2="200" stroke="#1f2a3a" stroke-width="1"/>
+      <line x1="60" y1="40" x2="60" y2="200" stroke="#1f2a3a" stroke-width="1"/>
+      <path d="M 60 195 Q 200 190, 300 150 T 560 50" fill="none" stroke="#7ec4d6" stroke-width="2"/>
+      <path d="M 60 195 Q 200 190, 300 150 T 560 50 L 560 200 L 60 200 Z" fill="url(#g1)" opacity="0.2"/>
+      <circle cx="380" cy="105" r="5" fill="#d4af6a"/>
+        <text x="395" y="100" fill="#e8e2d3" font-family="Consolas, monospace" font-size="11">before: 37°C, saturated</text>
+      <path d="M 380 110 Q 320 130, 220 165" stroke="#e89a6a" stroke-width="1.5" fill="none" stroke-dasharray="3,3"/>
+      <polygon points="220,165 230,160 228,170" fill="#e89a6a"/>
+      <circle cx="220" cy="165" r="5" fill="#e89a6a"/>
+        <text x="80" y="170" fill="#e8e2d3" font-family="Consolas, monospace" font-size="11">after expansion: cold + supersaturated</text>
+        <text x="560" y="220" fill="#8a8472" font-family="Consolas, monospace" font-size="10" text-anchor="end">temperature →</text>
+        <text x="60" y="30" fill="#8a8472" font-family="Consolas, monospace" font-size="10">↑ vapor capacity</text>
+    </svg>
+    <div class="diagram-caption">איור 1 — עקומת הרוויה. הקירור גורר את האוויר אל מתחת לקו הקיבולת, ומאלץ התעבות.</div>
+  </div>
+</section>
+
+<section>
+  <span class="section-num">§ 04 — הביולוגיה</span>
+  <h2>למה הפה הוא מפעל הענן המושלם</h2>
+  <p>אי אפשר לשחזר את הניסוי הזה עם בלון וכיור מטבח. לפה יש שלוש תכונות שביחד הופכות אותו לכמעט אידיאלי למשימה.</p>
+  <p><strong>הוא לח באופן קבוע.</strong> אוויר חיצוני, גם ביום קיץ לח, רק לעיתים נדירות עולה על 80% לחות יחסית. הפה הוא בעצם 100% כל הזמן. זה אומר שלא נדרשת עבודת הכנה — מדלגים על שלב "הרוויה של התא" שמורי פיזיקה מבזבזים עליו חצי שיעור מעבדה.</p>
+  <p><strong>הוא חם.</strong> טמפרטורת הגוף נותנת לאוויר קיבולת אדים גבוהה מלכתחילה. ככל שאוויר ההתחלה חם יותר, כך הוא מכיל יותר אדי מים, ויש יותר מים להתעבות בעת ירידת הטמפרטורה. פה קר היה מייצר ענן חלש יותר.</p>
+  <p><strong>הוא מגיע עם גרעיני התעבות מובנים.</strong> זו הנקודה העדינה. אדי מים טהורים, באוויר נקי, <em>לא</em> מתעבים בקלות גם כשהם על-רוויים. צריכים משהו לעגון עליו — מה שמדעני אטמוספרה מכנים <strong>גרעין התעבות עננים (CCN)</strong>. הפה מלא בהם: מיקרו-טיפות רוק שנקרעו מהלשון והשפתיים במהלך הנקישה, מלחים וחלבונים מומסים, מולקולות אורגניות מהנשימה. כל אחד מהם הוא אתר התעבות חופשי, ללא מאמץ נוסף.</p>
+
+  <div class="factbox">
+    <span class="factbox-label">הפתעה קטנה</span>
+    <p>אילו יכולת לעשות את התעלול הזה בתוך תא נקי לחלוטין ללא אירוסולים — בלי טיפות רוק, בלי אבק — לא היית מקבל כלום. האוויר היה הופך לעל-רווי ונשאר על-רווי. המים פשוט לא היו להם לאן ללכת. צ. ת. ר. ווילסון, חתן פרס נובל לפיזיקה לשנת 1927, בילה שנים בלברר את זה בדרך הקשה.</p>
+  </div>
+</section>
+
+<section>
+  <span class="section-num">§ 05 — הקרובים</span>
+  <h2>אותה פיזיקה בחמישה מקומות נוספים</h2>
+  <p>ברגע שמבינים מה רואים, מתחילים לראות את אותו תעלול בכל מקום.</p>
+
+  <div class="cousins">
+    <div class="cousin">
+      <svg class="cousin-icon" viewBox="0 0 40 40" fill="none">
+        <path d="M14 6 L26 6 L24 14 L24 28 Q24 34 20 34 Q16 34 16 28 L16 14 Z" stroke="#d4af6a" stroke-width="1.5"/>
+        <circle cx="20" cy="20" r="1" fill="#7ec4d6"/>
+        <circle cx="22" cy="24" r="1" fill="#7ec4d6"/>
+        <circle cx="18" cy="22" r="0.8" fill="#7ec4d6"/>
+      </svg>
+      <div>
+        <h4>ערפל השמפניה</h4>
+        <p>כשהפקק קופץ, CO₂ ואדי מים בלחץ מתפשטים אדיאבטית לתוך צוואר הבקבוק. הטמפרטורה יכולה לצנוח לרגע מתחת ל-80°C-. חוקרים תיעדו זאת בצילום; מעבדתו של ליג'ר-בלייר בריימס פרסמה מחקרים כמותיים ב-<em>Scientific Reports</em>.</p>
+      </div>
+    </div>
+    <div class="cousin">
+      <svg class="cousin-icon" viewBox="0 0 40 40" fill="none">
+        <rect x="14" y="10" width="12" height="22" rx="1" stroke="#d4af6a" stroke-width="1.5"/>
+        <circle cx="20" cy="14" r="1.5" fill="#e89a6a"/>
+        <path d="M18 8 Q20 4, 22 8" stroke="#7ec4d6" stroke-width="1" fill="none"/>
+      </svg>
+      <div>
+        <h4>פיח פחית הקולה</h4>
+        <p>פותחים פחית קולה קרה או מים מוגזים. הענן הקטן שמתחלף החוצה מהפתח הוא אותו דבר בדיוק — CO₂ לחוץ זורם החוצה, מתפשט, מקרר את האוויר הרווי המצורף אליו, ומעבה אדי מים.</p>
+      </div>
+    </div>
+    <div class="cousin">
+      <svg class="cousin-icon" viewBox="0 0 40 40" fill="none">
+        <path d="M6 20 L34 20" stroke="#d4af6a" stroke-width="1.5"/>
+        <path d="M14 16 L14 24 L20 28 L26 24 L26 16 L20 12 Z" stroke="#7ec4d6" stroke-width="1" fill="none"/>
+      </svg>
+      <div>
+        <h4>תא הענן של ווילסון</h4>
+        <p>גליל זכוכית אטום מלא אוויר רווי. מושכים בוכנה. ההתפשטות האדיאבטית הופכת את האדים לעל-רוויים. כשקרן קוסמית חולפת, היא משאירה שובל יונים — והמים העל-רוויים מתעבים עליהם. אפשר לראות את המסלול של חלקיק תת-אטומי. הביא לווילסון את פרס הנובל ב-1927.</p>
+      </div>
+    </div>
+    <div class="cousin">
+      <svg class="cousin-icon" viewBox="0 0 40 40" fill="none">
+        <path d="M4 28 Q12 28 16 24 L24 16 Q28 12 36 12" stroke="#d4af6a" stroke-width="1.5" fill="none"/>
+        <ellipse cx="22" cy="22" rx="9" ry="3" stroke="#7ec4d6" stroke-width="1" fill="none" opacity="0.6"/>
+      </svg>
+      <div>
+        <h4>התעבות מבום על-קולי</h4>
+        <p>כשמטוס שובר את מחסום הקול באוויר לח, ירידת הלחץ המהירה מאחורי גל ההלם מפעילה את אותה התעבות. ענן האדים הקוני המפורסם סביב מטוסים על-קוליים הוא, מבחינה מכנית, פיח הפה שלך במהירות מאך 1.</p>
+      </div>
+    </div>
+    <div class="cousin">
+      <svg class="cousin-icon" viewBox="0 0 40 40" fill="none">
+        <path d="M6 32 Q12 18 20 18 Q28 18 34 32" stroke="#d4af6a" stroke-width="1.5" fill="none"/>
+        <circle cx="14" cy="14" r="2" fill="#7ec4d6" opacity="0.6"/>
+        <circle cx="22" cy="10" r="3" fill="#7ec4d6" opacity="0.6"/>
+        <circle cx="30" cy="14" r="2" fill="#7ec4d6" opacity="0.6"/>
+      </svg>
+      <div>
+        <h4>עננים בשמיים האמיתיים</h4>
+        <p>עננים אטמוספריים נוצרים כשגוש אוויר חם ולח עולה, מתפשט אדיאבטית בעודו מטפס לאזור לחץ נמוך יותר. הטמפרטורה יורדת, אדי המים על-רוויים, וטיפות מתעבות סביב אבק, מלח ים ואבקנים. ענן קומולוס הוא, מוגדל פי עשרה מיליון, בדיוק הפיח שיצא מהפה שלך.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <span class="section-num">§ 06 — תיקון תפיסות שגויות</span>
+  <h2>שלושה דברים שאנשים טועים בהם</h2>
+
+  <div class="myth">
+    <p class="myth-claim">"זה אותו דבר כמו ההבל שרואים בנשימה ביום קר."</p>
+    <p class="myth-truth">דומה, אבל מנגנון שונה. ההבל ביום קר הוא <em>ערפל ערבוב</em> — נשימה חמה ולחה פוגשת אוויר קר ויבש, והתערובת נמצאת לרגע מעל הרוויה. אפקט ענן הפה הוא <em>ערפל התפשטות</em> — אותו אוויר, מקורר אדיאבטית מהדה-קומפרסיה של עצמו. אפשר לייצר את ענן הפה בחדר חם שבו לעולם לא היית רואה הבל רגיל.</p>
+  </div>
+  <div class="myth">
+    <p class="myth-claim">"הלחץ בתוך הפה חייב להיות עצום."</p>
+    <p class="myth-truth">לא נכון. כנראה שמגיעים רק ל-1.05 עד 1.15 אטמוספרות — אחוזים בודדים מעל הלחץ הסביבתי. אבל קירור אדיאבטי רגיש מספיק כדי שגם ירידות לחץ קטנות יפיקו התעבות נראית, בתנאי שהאוויר רווי וקיימים אירוסולים. שני התנאים מובטחים בפה.</p>
+  </div>
+  <div class="myth">
+    <p class="myth-claim">"הערפל מגיע מטיפות רוק ישירות, לא מהתעבות."</p>
+    <p class="myth-truth">טיפות רוק הן זעירות וברובן בלתי נראות לעין. מה שרואים הן טיפות מים גדולות יותר שצמחו <em>סביב</em> חלקיקי הרוק הבלתי-נראים. הרוק משמש כפיגום; המסה העיקרית של כל טיפה נראית היא מים שעוברים התעבות מהאדים הסביבתיים. תוריד את הקירור, וטיפות הרוק עדיין שם — רק בלתי-נראות.</p>
+  </div>
+</section>
+
+<section>
+  <span class="section-num">§ 07 — שאלה של שיום</span>
+  <h2>למה לתופעה הזו אין שם?</h2>
+  <p>תופעות מקבלות שמות מדעיים באחת משתי דרכים. או שמישהו מגלה משהו חדש באמת והשם נצמד אליו (<em>אפקט דופלר</em>, <em>אפקט ג'ול-תומסון</em>), או שקהילה של פרקטיקנים משתמשת במונח תיאורי מספיק פעמים עד שהוא מתגבש (<em>ערפל שמפניה</em>, <em>התעבות בום-על-קולי</em>). אף אחד מהשניים לא קרה כאן. הפיזיקה הבסיסית — דה-קומפרסיה אדיאבטית של אוויר רווי — מובנת מעל מאה שנה. המקרה הספציפי של ביצועה עם פה אנושי היה, עד עכשיו, בעיקר דבר שילדים מגלים מחדש בחצרות בית ספר ואז שוכחים.</p>
+  <p>אפשר להציע שם. <em>ערפל דה-קומפרסיה אורלי</em> עובד טכנית. <em>אפקט ענן הפה</em> עובד עממית. אף אחד מהם לא בשום ספר לימוד. התופעה יושבת בקטגוריה המוזרה של דברים שחווים אותם באופן אוניברסלי אך כלל לא מתועדים — מה שמשונה, יותר נפוץ ממה שאנשים חושבים.</p>
+  <p class="lede">אם תהית פעם אם לפיזיקה נשאר עוד משהו לומר על החיים הרגילים, התשובה היא: כן, כל הזמן, ורובו עוד לא נכתב.</p>
+</section>
+
+</article>
+
+<footer>
+  <h3>להמשך קריאה</h3>
+  <ul>
+    <li>C. T. R. Wilson (1911) — המאמרים המקוריים על תא הענן, <em>Proceedings of the Royal Society A</em></li>
+    <li>Liger-Belair et al. (2017) — "Unveiling CO₂ heterogeneous freezing plumes during champagne cork popping," <em>Scientific Reports</em></li>
+    <li>Köhler, H. (1936) — "The nucleus in and the growth of hygroscopic droplets," <em>Transactions of the Faraday Society</em></li>
+    <li>Pruppacher &amp; Klett (2010) — <em>Microphysics of Clouds and Precipitation</em>, ספר היחס הסטנדרטי</li>
+    <li>Pandis &amp; Seinfeld (1998) — <em>Atmospheric Chemistry and Physics</em>, למתמטיקה</li>
+  </ul>
+  <div class="colophon">סודר בפונטים מקומיים של מערכת ההפעלה · במצב כהה לאווירה · אחד משלושה מסמכים נלווים · <span style="color:var(--accent)">מהדורה עברית · RTL</span></div>
+</footer>
+
+</main>
+</body>
+</html>

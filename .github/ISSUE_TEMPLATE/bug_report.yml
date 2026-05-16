@@ -1,0 +1,127 @@
+name: Bug Report
+description: Report a defect — LaTeX compilation failure, HTML rendering glitch, validator regression, or incorrect output.
+title: "[BUG] <concise description>"
+labels: ["bug", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to file a bug report.
+        Please complete every section below — incomplete reports will be
+        closed pending information.
+
+        **Do NOT use this template to report a security vulnerability.**
+        Follow the disclosure protocol in [`SECURITY.md`](../blob/main/SECURITY.md).
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Confirm you have completed the following before filing.
+      options:
+        - label: I searched [existing issues](../issues?q=is%3Aissue) (open and closed) for duplicates.
+          required: true
+        - label: I am running the latest `main` branch (or a tagged release).
+          required: true
+        - label: This is not a security issue (those go via `SECURITY.md`).
+          required: true
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected component
+      description: Which part of the repository is broken?
+      options:
+        - LaTeX paper compilation (docs/paper)
+        - HTML article — English (docs/web/mouth_cloud_effect_EN.html)
+        - HTML article — Hebrew (docs/web/mouth_cloud_effect_HE.html)
+        - HTML validator (scripts/validate_html.py)
+        - Makefile / build orchestration
+        - GitHub Actions CI workflow
+        - README / documentation
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What is wrong? Be precise. Quote exact equation references, line numbers, or selectors where applicable.
+      placeholder: |
+        Equation (4.7) in docs/paper/OADF_academic_paper.tex prints "γ-1" but should print "γ+1" per the Poisson relation as written on line 247.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Minimum sequence of commands that triggers the bug.
+      render: shell
+      placeholder: |
+        git clone https://github.com/LiranOG/OADF.git
+        cd OADF
+        make paper
+        # error appears at line N of the log
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: What should happen instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour (with logs)
+      description: |
+        Paste the last 30–60 lines of the relevant log. For LaTeX, that's
+        the tail of `.log` or stdout. For HTML, paste the validator output.
+        Wrap in triple backticks.
+      render: text
+    validations:
+      required: true
+
+  - type: input
+    id: commit
+    attributes:
+      label: Commit SHA
+      description: Output of `git rev-parse HEAD`.
+      placeholder: "abc1234..."
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: "Ubuntu 24.04 / macOS 14.5 / Windows 11 + WSL2 Debian 12"
+    validations:
+      required: true
+
+  - type: input
+    id: latex_version
+    attributes:
+      label: TeX distribution / version
+      description: Output of `pdflatex --version` (or `latexmk --version`). Skip if not LaTeX-related.
+      placeholder: "TeX Live 2024 / pdfTeX 3.141592653-2.6-1.40.26"
+
+  - type: input
+    id: python_version
+    attributes:
+      label: Python version
+      description: Output of `python3 --version`. Skip if not validator-related.
+      placeholder: "Python 3.12.3"
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Screenshots, related issues, hypotheses about root cause.

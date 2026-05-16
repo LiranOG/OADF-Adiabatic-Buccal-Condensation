@@ -18,6 +18,17 @@ in the Human Buccal Cavity Under Rapid Decompression.*
 
 ---
 
+> [!IMPORTANT]
+> ***Epistemic Status & Disclaimer***
+> 
+>**Important Notice:** The theoretical framework, mathematical models, and thermodynamic analyses presented in this repository represent a **personal, independent research project** and have **not been peer-reviewed** by any formal scientific journal or academic body.
+>
+>The author is an independent researcher and is not a professional scientist, credentialed physicist, or domain expert in fluid dynamics, thermodynamics, or aerosol physics. This project carries **no institutional affiliation** with any university, laboratory, or formal research group. 
+>
+>This work is a self-directed, exploratory attempt to synthesize, model, and document the physics of the observed phenomenon using standard classical principles out of pure intellectual curiosity. All equations, data tables, and empirical predictions should be treated strictly as a working draft for pedagogical and illustrative purposes.
+
+---
+
 ## 1. Abstract
 
 This repository hosts the formal treatment of the **Oral Adiabatic

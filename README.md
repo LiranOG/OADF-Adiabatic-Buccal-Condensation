@@ -13,6 +13,7 @@ in the Human Buccal Cavity Under Rapid Decompression.*
 [![Paper](https://img.shields.io/badge/paper-PDF-red.svg)](docs/paper/OADF_academic_paper.pdf)
 [![Citation](https://img.shields.io/badge/cite-CFF-blue.svg)](CITATION.cff)
 [![CI](https://img.shields.io/github/actions/workflow/status/LiranOG/OADF-Adiabatic-Buccal-Condensation/ci.yml?branch=main&label=LaTeX%20build)](https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation/actions/workflows/ci.yml)
+[![Read Online](https://img.shields.io/badge/read-English%20web%20article-2ea44f.svg)](https://liranog.github.io/OADF-Adiabatic-Buccal-Condensation/mouth_cloud_effect_EN.html)
 
 </div>
 
@@ -65,7 +66,17 @@ distinguished from exhaled-breath mixing fog. No claim of physical novelty
 is made; the contribution is terminological, pedagogical, and
 aerosol-biological.
 
-## 2. Reference Predictions
+## 2. Read Online
+
+The reader-friendly English web article is published through GitHub Pages:
+
+**https://liranog.github.io/OADF-Adiabatic-Buccal-Condensation/mouth_cloud_effect_EN.html**
+
+The site root also redirects to the English article:
+
+**https://liranog.github.io/OADF-Adiabatic-Buccal-Condensation/**
+
+## 3. Reference Predictions
 
 | Quantity                               | Value (Π = 1.10)               |
 |----------------------------------------|--------------------------------|
@@ -80,7 +91,7 @@ aerosol-biological.
 | Plume opacity onset                    | ~10 ms                         |
 | Plume dissipation                      | ~1 s                           |
 
-## 3. Repository Layout
+## 4. Repository Layout
 
 ```
 .
@@ -89,13 +100,15 @@ aerosol-biological.
 │   │   ├── bug_report.yml
 │   │   └── feature_request.yml
 │   ├── workflows/
-│   │   └── ci.yml
+│   │   ├── ci.yml
+│   │   └── pages.yml
 │   └── PULL_REQUEST_TEMPLATE.md
 ├── docs/
 │   ├── paper/
 │   │   ├── OADF_academic_paper.tex
 │   │   └── OADF_academic_paper.pdf
 │   └── web/
+│       ├── index.html
 │       ├── mouth_cloud_effect_EN.html
 │       └── mouth_cloud_effect_HE.html
 ├── scripts/
@@ -110,9 +123,9 @@ aerosol-biological.
 └── SECURITY.md
 ```
 
-## 4. Build Instructions
+## 5. Build Instructions
 
-### 4.1 Prerequisites
+### 5.1 Prerequisites
 
 | Tool      | Minimum version                | Role                                |
 |-----------|--------------------------------|-------------------------------------|
@@ -126,7 +139,7 @@ Required LaTeX packages: `siunitx`, `mhchem`, `tikz`, `booktabs`,
 No external bibliography tool (`biber`, `bibtex`) is required; the
 reference list is a self-contained `thebibliography` environment.
 
-### 4.2 Compile the paper
+### 5.2 Compile the paper
 
 ```bash
 make paper
@@ -135,14 +148,14 @@ make paper
 `latexmk` is selected when available; otherwise a three-pass `pdflatex`
 sequence is invoked. Output: `docs/paper/OADF_academic_paper.pdf`.
 
-### 4.3 Serve the HTML articles locally
+### 5.3 Serve the HTML articles locally
 
 ```bash
 make web                # binds 0.0.0.0:8000
 make web WEB_PORT=8080  # override port
 ```
 
-### 4.4 Validate HTML structure
+### 5.4 Validate HTML structure
 
 ```bash
 make validate
@@ -150,20 +163,20 @@ make validate
 python3 scripts/validate_html.py docs/web
 ```
 
-### 4.5 Clean
+### 5.5 Clean
 
 ```bash
 make clean       # transient LaTeX artifacts only
 make distclean   # also remove the compiled PDF
 ```
 
-### 4.6 Target enumeration
+### 5.6 Target enumeration
 
 ```bash
 make help
 ```
 
-## 5. Citation
+## 6. Citation
 
 Machine-readable metadata in [`CITATION.cff`](CITATION.cff). BibTeX:
 
@@ -180,22 +193,22 @@ Machine-readable metadata in [`CITATION.cff`](CITATION.cff). BibTeX:
 }
 ```
 
-## 6. Keywords
+## 7. Keywords
 
 thermodynamics · adiabatic decompression · Wilson cloud chamber ·
 fluid dynamics · supersaturation · cloud condensation nuclei · Köhler
 theory · bioaerosol · aerosol microphysics · Poisson adiabatic ·
 Clausius–Clapeyron · respiratory physics · physics education.
 
-## 7. Author
+## 8. Author
 
 **Liran Schwartz** · GitHub: [`@LiranOG`](https://github.com/LiranOG) ·
 ORCID: [0009-0008-8035-1308](https://orcid.org/0009-0008-8035-1308) ·
 Contact: `scliran9@gmail.com`.
 
-## 8. License — Summary
+## 9. License — Summary
 
-This repository operates under a **dual-licensing architecture**. See §9
+This repository operates under a **dual-licensing architecture**. See §10
 below for the file-level boundary matrix, and [`LICENSE`](LICENSE) for the
 binding legal text.
 
@@ -203,14 +216,14 @@ Copyright © 2024–2026 Liran Schwartz.
 
 ---
 
-## 9. Licensing — File-Level Boundary Matrix
+## 10. Licensing — File-Level Boundary Matrix
 
 Two disjoint licenses govern two disjoint classes of content. Reuse must
 comply with the license that controls the specific file or fragment. The
 broader category does **not** subsume the narrower one. Mixed-content
 files (the HTML articles) are subject to an explicit intra-file split.
 
-### 9.1 Boundary Matrix
+### 10.1 Boundary Matrix
 
 | Path / Pattern                                  | License                       | SPDX                | Rationale                                     |
 |-------------------------------------------------|-------------------------------|---------------------|-----------------------------------------------|
@@ -220,8 +233,8 @@ files (the HTML articles) are subject to an explicit intra-file split.
 | `.github/ISSUE_TEMPLATE/**`                     | MIT                           | `MIT`               | Issue forms — Software Layer                  |
 | `.github/PULL_REQUEST_TEMPLATE.md`              | MIT                           | `MIT`               | Repository metadata — Software Layer          |
 | `.gitignore`                                    | MIT                           | `MIT`               | Repository hygiene — Software Layer           |
-| `docs/web/mouth_cloud_effect_EN.html`           | **dual (intra-file split)**   | `MIT` + `CC-BY-4.0` | See §9.2                                      |
-| `docs/web/mouth_cloud_effect_HE.html`           | **dual (intra-file split)**   | `MIT` + `CC-BY-4.0` | See §9.2                                      |
+| `docs/web/mouth_cloud_effect_EN.html`           | **dual (intra-file split)**   | `MIT` + `CC-BY-4.0` | See §10.2                                     |
+| `docs/web/mouth_cloud_effect_HE.html`           | **dual (intra-file split)**   | `MIT` + `CC-BY-4.0` | See §10.2                                     |
 | `docs/paper/OADF_academic_paper.tex`            | CC BY 4.0                     | `CC-BY-4.0`         | Scholarly manuscript — Academic Layer         |
 | `docs/paper/OADF_academic_paper.pdf`            | CC BY 4.0                     | `CC-BY-4.0`         | Compiled scholarly artifact — Academic Layer  |
 | `README.md`                                     | MIT                           | `MIT`               | Project documentation; quotations carry CC BY 4.0 attribution |
@@ -230,7 +243,7 @@ files (the HTML articles) are subject to an explicit intra-file split.
 | `CITATION.cff`                                  | MIT                           | `MIT`               | The CFF *file* is MIT; its `license:` *field* refers to the **paper**, which is CC BY 4.0. |
 | `LICENSE`                                       | MIT                           | `MIT`               | Defines its own terms                         |
 
-### 9.2 Intra-File Split — `docs/web/*.html`
+### 10.2 Intra-File Split — `docs/web/*.html`
 
 Each popular-science HTML article is a mixed-content artifact. The two
 content classes are licensed independently:
@@ -248,19 +261,19 @@ attribution to **Liran Schwartz**
 link to https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation and
 an indication of any changes.
 
-### 9.3 SPDX Quick Reference
+### 10.3 SPDX Quick Reference
 
 - Software Layer / Project Metadata → `SPDX-License-Identifier: MIT`
 - Academic Layer → `SPDX-License-Identifier: CC-BY-4.0`
 
-### 9.4 Logical Closure
+### 10.4 Logical Closure
 
 For any artifact *x* in this repository, exactly one of the following
 holds:
 
 1. *x* ∈ Software Layer ⟹ MIT applies in full.
 2. *x* ∈ Academic Layer ⟹ CC BY 4.0 applies in full.
-3. *x* is a mixed-content HTML file ⟹ §9.2 controls — its structural
+3. *x* is a mixed-content HTML file ⟹ §10.2 controls — its structural
    bytes are MIT, its scientific bytes are CC BY 4.0.
 
 The categorization is exhaustive and disjoint.

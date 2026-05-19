@@ -4,3 +4,8 @@
 *.jpg binary
 *.jpeg binary
 *.gif binary
+
+# Force TeX to be counted in the Languages bar
+# (default behavior excludes everything under docs/ as documentation)
+docs/paper/** linguist-documentation=false
+*.tex linguist-detectable=true

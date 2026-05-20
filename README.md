@@ -177,13 +177,13 @@ make help
 Machine-readable metadata in [`CITATION.cff`](CITATION.cff). BibTeX:
 
 ```bibtex
-@misc{Schwartz2024_OADF,
+@misc{Schwartz2026_OADF,
   author       = {Schwartz, Liran},
   title        = {Oral Adiabatic Decompression Fog (OADF):
                   A Thermodynamic and Aerosol-Physics Analysis of Visible
                   Vapor Condensation in the Human Buccal Cavity Under Rapid
                   Decompression},
-  year         = {2024},
+  year         = {2026},
   note         = {Working draft. ORCID: \href{https://orcid.org/0009-0008-8035-1308}{0009-0008-8035-1308}},
   howpublished = {\url{https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation}}
 }
@@ -208,7 +208,7 @@ This repository operates under a **dual-licensing architecture**. See §10
 below for the file-level boundary matrix, and [`LICENSE`](LICENSE) for the
 binding legal text.
 
-Copyright © 2024–2026 Liran Schwartz.
+Copyright © 2026 Liran Schwartz.
 
 ---
 

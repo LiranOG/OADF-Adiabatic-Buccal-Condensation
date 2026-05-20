@@ -45,7 +45,7 @@ url: "https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation"
 license: CC-BY-4.0
 license-url: "https://creativecommons.org/licenses/by/4.0/legalcode"
 version: "0.1.0"
-date-released: "2026-04"
+date-released: "2026-05-20"
 keywords:
   - thermodynamics
   - adiabatic-decompression
@@ -96,4 +96,6 @@ preferred-citation:
       orcid: "https://orcid.org/0009-0008-8035-1308"
       email: "scliran9@gmail.com"
   year: 2026
-  notes: Working draft. Repository at https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation.
+  doi: "10.5281/zenodo.20309016"
+  url: "https://doi.org/10.5281/zenodo.20309016"
+  notes: Working draft. Not peer-reviewed. Repository at https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation.

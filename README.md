@@ -71,7 +71,7 @@ aerosol-biological.
 
 The reader-friendly English web article is published through GitHub Pages:
 
-**https://liranog.github.io/OADF-Adiabatic-Buccal-Condensation/mouth_cloud_effect_EN.html**
+[→ Read the English Web Article](https://liranog.github.io/OADF-Adiabatic-Buccal-Condensation/mouth_cloud_effect_EN.html)
 
 ## 3. Reference Predictions
 

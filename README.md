@@ -14,7 +14,7 @@ in the Human Buccal Cavity Under Rapid Decompression.*
 [![Citation](https://img.shields.io/badge/cite-CFF-blue.svg)](CITATION.cff)
 
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0008--8035--1308-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0008-8035-1308)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20309016.svg)](https://doi.org/10.5281/zenodo.20309016)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20309015.svg)](https://doi.org/10.5281/zenodo.20309015)
 
 </div>
 
@@ -185,10 +185,10 @@ Machine-readable metadata in [`CITATION.cff`](CITATION.cff). BibTeX:
                   Vapor Condensation in the Human Buccal Cavity Under Rapid
                   Decompression},
   year         = {2026},
-  doi          = {10.5281/zenodo.20309016},
-  url          = {https://doi.org/10.5281/zenodo.20309016},
+  doi          = {10.5281/zenodo.20309015},
+  url          = {https://doi.org/10.5281/zenodo.20309015},
   note         = {Working draft. ORCID: \href{https://orcid.org/0009-0008-8035-1308}{0009-0008-8035-1308}},
-  howpublished = {\url{https://doi.org/10.5281/zenodo.20309016}}
+  howpublished = {\url{https://doi.org/10.5281/zenodo.20309015}}
 }
 ```
 

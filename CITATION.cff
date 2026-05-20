@@ -68,11 +68,11 @@ references:
     authors:
       - family-names: Wilson
         given-names: Charles Thomson Rees
-    journal: Philosophical Transactions of the Royal Society A
+    journal: Proceedings of the Royal Society A
     year: 1911
-    volume: 211
-    start: 392
-    end: 397
+    volume: 85
+    start: 285
+    end: 288
   - type: article
     title: The nucleus in and the growth of hygroscopic droplets
     authors:

@@ -5,8 +5,6 @@
 *A Thermodynamic and Aerosol-Physics Analysis of Visible Vapor Condensation
 in the Human Buccal Cavity Under Rapid Decompression.*
 
-[![ORCID](https://img.shields.io/badge/ORCID-0009--0008--8035--1308-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0008-8035-1308)
-
 [![CI](https://img.shields.io/github/actions/workflow/status/LiranOG/OADF-Adiabatic-Buccal-Condensation/ci.yml?branch=main&label=LaTeX%20build)](https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation/actions/workflows/ci.yml)
 [![Read Online](https://img.shields.io/badge/read-English%20web%20article-2ea44f.svg)](https://liranog.github.io/OADF-Adiabatic-Buccal-Condensation/mouth_cloud_effect_EN.html)
 
@@ -14,6 +12,9 @@ in the Human Buccal Cavity Under Rapid Decompression.*
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Paper](https://img.shields.io/badge/paper-PDF-red.svg)](docs/paper/OADF_academic_paper.pdf)
 [![Citation](https://img.shields.io/badge/cite-CFF-blue.svg)](CITATION.cff)
+
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0008--8035--1308-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0009-0008-8035-1308)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20309016.svg)](https://doi.org/10.5281/zenodo.20309016)
 
 </div>
 
@@ -184,8 +185,10 @@ Machine-readable metadata in [`CITATION.cff`](CITATION.cff). BibTeX:
                   Vapor Condensation in the Human Buccal Cavity Under Rapid
                   Decompression},
   year         = {2026},
+  doi          = {10.5281/zenodo.20309016},
+  url          = {https://doi.org/10.5281/zenodo.20309016},
   note         = {Working draft. ORCID: \href{https://orcid.org/0009-0008-8035-1308}{0009-0008-8035-1308}},
-  howpublished = {\url{https://github.com/LiranOG/OADF-Adiabatic-Buccal-Condensation}}
+  howpublished = {\url{https://doi.org/10.5281/zenodo.20309016}}
 }
 ```
 
